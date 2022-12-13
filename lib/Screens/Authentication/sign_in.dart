@@ -227,9 +227,11 @@ class _SignInState extends State<SignIn> {
 
       if (body.length >= 1) {
         SharedPreferences localStorage = await SharedPreferences.getInstance();
+        localStorage.setString('notif', json.encode(body[0]["notif"]));
         localStorage.setString('iduser', json.encode(body[0]["id"]));
         localStorage.setString('name', json.encode(body[0]["name"]));
         localStorage.setString('level_id', json.encode(body[0]["level_id"]));
+        localStorage.setString('cabang', json.encode(body[0]["cabang"]));
         localStorage.setString('mobile', json.encode(body[0]["mobile"]));
         localStorage.setString(
             'cabang', json.encode(body[0]["industry_id"][1]));

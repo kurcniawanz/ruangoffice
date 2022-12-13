@@ -6,6 +6,7 @@ import 'package:nb_utils/nb_utils.dart';
 
 import '../../constant.dart';
 import '../../network/api.dart';
+import 'product_add.dart';
 import 'product_detail.dart';
 
 class ProductList extends StatefulWidget {
@@ -46,6 +47,14 @@ class _ProductListState extends State<ProductList> {
     }
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => const ProductAdd().launch(context),
+        backgroundColor: kMainColor,
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+      ),
       resizeToAvoidBottomInset: false,
       backgroundColor: kMainColor,
       appBar: AppBar(

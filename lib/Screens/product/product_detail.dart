@@ -130,7 +130,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                     child: Text(
                                       item['cek_komisi'].toString(),
                                       style: kTextStyle.copyWith(
-                                          color: kGreyTextColor, fontSize: 10),
+                                          color: kMainColorlama, fontSize: 10),
                                     ),
                                   )
                                 ],
@@ -146,7 +146,23 @@ class _ProductDetailsState extends State<ProductDetails> {
                                     child: Text(
                                       item['cek_ppn'].toString(),
                                       style: kTextStyle.copyWith(
-                                          color: kGreyTextColor, fontSize: 10),
+                                          color: kMainColorlama, fontSize: 10),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 12),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Flexible(
+                                    child: Text(
+                                      item['textsewa'].toString(),
+                                      style: kTextStyle.copyWith(
+                                          color: kMainColorlama, fontSize: 10),
                                     ),
                                   )
                                 ],

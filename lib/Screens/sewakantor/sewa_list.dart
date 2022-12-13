@@ -6,6 +6,7 @@ import 'package:nb_utils/nb_utils.dart';
 
 import '../../constant.dart';
 import '../../network/api.dart';
+import 'sewa_add.dart';
 import 'sewa_detail.dart';
 
 class SewaList extends StatefulWidget {
@@ -29,6 +30,14 @@ class _SewaListState extends State<SewaList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => const SewaAdd().launch(context),
+        backgroundColor: kMainColor,
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+      ),
       resizeToAvoidBottomInset: false,
       backgroundColor: kMainColor,
       appBar: AppBar(

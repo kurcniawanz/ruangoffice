@@ -69,7 +69,7 @@ class _AboutScreenState extends State<AboutScreen> {
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 10.0),
                 child: Text(
-                  'Version 1.0.4',
+                  'Version 1.0.5',
                   style: GoogleFonts.manrope(
                       color: Colors.black,
                       fontWeight: FontWeight.normal,

@@ -23,7 +23,7 @@ class _KerjaListState extends State<KerjaList> {
   @override
   void initState() {
     super.initState();
-    _getinvoicedata();
+    _getinvoicedata('2');
   }
 
   @override
@@ -59,11 +59,48 @@ class _KerjaListState extends State<KerjaList> {
           style: kTextStyle.copyWith(
               color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        // actions: const [
-        //   Image(
-        //     image: AssetImage('images/employeesearch.png'),
-        //   ),
-        // ],
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Container(
+              width: 50.0,
+              padding: const EdgeInsets.all(4.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8.0),
+                color: Colors.white.withOpacity(0.1),
+              ),
+              child: Center(
+                child: Text(
+                  ' All ',
+                  style: kTextStyle.copyWith(
+                      color: Colors.white, fontWeight: FontWeight.normal),
+                ),
+              ),
+            ).onTap(() {
+              _getinvoicedata('1');
+            }),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Container(
+              width: 50.0,
+              padding: const EdgeInsets.all(4.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8.0),
+                color: Colors.white.withOpacity(0.1),
+              ),
+              child: Center(
+                child: Text(
+                  ' Mine ',
+                  style: kTextStyle.copyWith(
+                      color: Colors.white, fontWeight: FontWeight.normal),
+                ),
+              ),
+            ).onTap(() {
+              _getinvoicedata('2');
+            }),
+          ),
+        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -132,7 +169,7 @@ class _KerjaListState extends State<KerjaList> {
                                 Row(
                                   children: [
                                     Text(
-                                      '#${item['name']}',
+                                      '#${item['name']} / ${item['tglinput']}',
                                       style: kTextStyle.copyWith(
                                           color: kTitleColor,
                                           fontSize: 13,
@@ -140,7 +177,7 @@ class _KerjaListState extends State<KerjaList> {
                                     ),
                                     const Spacer(),
                                     Text(
-                                      item['sales_user'][1].toString(),
+                                      "${item['sales_user'][1]} ${item['agentnya']}",
                                       style: kTextStyle.copyWith(
                                           color: kMainColorlama,
                                           fontSize: 12,
@@ -233,13 +270,30 @@ class _KerjaListState extends State<KerjaList> {
     );
   }
 
-  Future<void> _getinvoicedata() async {
+  Future<void> _getinvoicedata(String kodenya) async {
     EasyLoading.show(status: 'loading...');
     setState(() {
       ketdata = 'sedang mengambil data...';
     });
 
-    var data = {"name": "%"};
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var levelnya =
+        localStorage.getString('level_id').toString().replaceAll('"', '');
+    var cabangnya =
+        localStorage.getString('cabang').toString().replaceAll('"', '');
+    var iduser =
+        localStorage.getString('iduser').toString().replaceAll('"', '');
+
+    debugPrint(levelnya);
+    debugPrint('====');
+
+    var data = {
+      "name": "%",
+      "level_id": levelnya,
+      "kodenya": kodenya,
+      "cabang": cabangnya,
+      "iduser": iduser
+    };
     var res = await Network().auth(data, '/invoice_ruang');
     var body = json.decode(res.body);
     setState(() {

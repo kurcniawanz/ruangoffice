@@ -164,7 +164,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     image: AssetImage('images/bell.png'),
                     width: 35,
                     height: 35,
-                  ),
+                  ).onTap(() {
+                    getDatatoken();
+                  }),
                 ),
               ),
             ],
@@ -797,13 +799,15 @@ class _HomeScreenState extends State<HomeScreen> {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     var namaa = localStorage.getString('name').toString().replaceAll('"', '');
     var levelnya =
-        localStorage.getString('level').toString().replaceAll('"', '');
+        localStorage.getString('level_id').toString().replaceAll('"', '');
     var nomobile =
         localStorage.getString('mobile').toString().replaceAll('"', '');
+    var notiff = localStorage.getString('notif').toString().replaceAll('"', '');
     setState(() {
       level = levelnya;
       nameprofilile = namaa;
       mobile = nomobile;
+      notifall = notiff;
     });
   }
 
