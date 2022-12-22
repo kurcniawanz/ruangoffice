@@ -7,7 +7,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:143702058108:android:6854a9ebcbd0c4301fd5f9",
+        "mobilesdk_app_id": "1:143702058108:android:72fb0a3e0aaa173a1fd5f9",
         "android_client_info": {
           "package_name": "com.apperza.ruangoffice"
         }
@@ -29,6 +29,49 @@
             {
               "client_id": "143702058108-6hmkbtovdalj5bove8do0073c13iacno.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "143702058108-rmujueqjoq7v5o5ecq29d8n24eunv73b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.apperza.ruangoffice"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:143702058108:android:6854a9ebcbd0c4301fd5f9",
+        "android_client_info": {
+          "package_name": "com.example.ruangoffice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "143702058108-6hmkbtovdalj5bove8do0073c13iacno.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALV_nugHv08Ty0QllrDbEaZ2IW-0CUhwM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "143702058108-6hmkbtovdalj5bove8do0073c13iacno.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "143702058108-rmujueqjoq7v5o5ecq29d8n24eunv73b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.apperza.ruangoffice"
+              }
             }
           ]
         }
