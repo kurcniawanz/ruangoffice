@@ -16,6 +16,7 @@ import '../Splash Screen/about_app.dart';
 import '../invoice/invoice_list.dart';
 import '../paket/paket_list.dart';
 import '../product/product_list.dart';
+import '../proforma/proforma_list.dart';
 import '../sewakantor/sewa_list.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -425,6 +426,17 @@ class _HomeScreenState extends State<HomeScreen> {
                           const SizedBox(
                             width: 20.0,
                           ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20.0,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(child: _materialproforma()),
+                          const SizedBox(
+                            width: 20.0,
+                          ),
                           Expanded(child: _materialinvoice()),
                         ],
                       ),
@@ -485,6 +497,52 @@ class _HomeScreenState extends State<HomeScreen> {
               Center(
                 child: Text(
                   'Invoice',
+                  style: kTextStyle.copyWith(
+                      color: kTitleColor, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    return dataresult;
+  }
+
+  Material _materialproforma() {
+    Material dataresult;
+
+    dataresult = Material(
+      elevation: 2.0,
+      child: GestureDetector(
+        onTap: () {
+          const ProformaList().launch(context);
+        },
+        child: Container(
+          width: context.width(),
+          padding: const EdgeInsets.all(10.0),
+          decoration: const BoxDecoration(
+            border: Border(
+              left: BorderSide(
+                color: kMainColor,
+                width: 3.0,
+              ),
+            ),
+            color: Colors.white,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Center(
+                child: Image(
+                  image: AssetImage('images/sewakantor.png'),
+                  height: 100,
+                ),
+              ),
+              Center(
+                child: Text(
+                  'Pro-Forma',
                   style: kTextStyle.copyWith(
                       color: kTitleColor, fontWeight: FontWeight.bold),
                 ),

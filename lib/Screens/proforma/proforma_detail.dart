@@ -2,7 +2,6 @@
 
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -11,32 +10,53 @@ import '../../constant.dart';
 import '../../network/api.dart';
 
 // ignore: must_be_immutable
-class SewaDetails extends StatefulWidget {
-  String idsewa;
-  SewaDetails({required this.idsewa});
+class ProformaDetails extends StatefulWidget {
+  String noinv;
+  ProformaDetails({required this.noinv});
 
   @override
   // ignore: library_private_types_in_public_api
-  _SewaDetailsState createState() => _SewaDetailsState(idsewa);
+  _ProformaDetailsState createState() => _ProformaDetailsState(noinv);
 }
 
-class _SewaDetailsState extends State<SewaDetails> {
-  String idsewa;
-  _SewaDetailsState(this.idsewa);
+class _ProformaDetailsState extends State<ProformaDetails> {
+  String noinv;
+  _ProformaDetailsState(this.noinv);
 
   String nomortugas = '';
   String nomorstaff = '';
   List listdata = [];
   bool isChecked = false;
 
+  String levelid = '';
+  String cabangid = '';
+  String userid = '';
+
   @override
   void initState() {
     super.initState();
-    _getpaketdetail();
+    _getinvdetail();
   }
 
   @override
   Widget build(BuildContext context) {
+    String formatAmount(price) {
+      String priceInText = "";
+      int counter = 0;
+      for (int i = (price.length - 1); i >= 0; i--) {
+        counter++;
+        String str = price[i];
+        if ((counter % 3) != 0 && i != 0) {
+          priceInText = "$str$priceInText";
+        } else if (i == 0) {
+          priceInText = "$str$priceInText";
+        } else {
+          priceInText = ",$str$priceInText";
+        }
+      }
+      return priceInText.trim();
+    }
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: kMainColor,
@@ -46,7 +66,7 @@ class _SewaDetailsState extends State<SewaDetails> {
         titleSpacing: 0.0,
         iconTheme: const IconThemeData(color: Colors.white),
         title: Text(
-          'Detail Paket',
+          'Detail Pro-Forma',
           maxLines: 2,
           style: kTextStyle.copyWith(
               color: Colors.white, fontWeight: FontWeight.bold),
@@ -73,8 +93,8 @@ class _SewaDetailsState extends State<SewaDetails> {
                     topRight: Radius.circular(30.0)),
                 color: kBgColor,
               ),
-              child: ListView(
-                // crossAxisAlignment: CrossAxisAlignment.center,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   for (var item in listdata)
                     Material(
@@ -88,19 +108,33 @@ class _SewaDetailsState extends State<SewaDetails> {
                         ),
                         child: Column(
                           children: [
-                            const SizedBox(
-                              height: 10.0,
-                            ),
                             Padding(
-                              padding: const EdgeInsets.only(right: 12),
+                              padding: const EdgeInsets.only(right: 20),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Flexible(
                                     child: Text(
-                                      item['cabang_id'].toString(),
+                                      item['industry_id'][1].toString(),
                                       style: kTextStyle.copyWith(
                                           color: kMainColor,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 12),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Flexible(
+                                    child: Text(
+                                      '#${item['name']}',
+                                      style: kTextStyle.copyWith(
+                                          color: kGreyTextColor,
                                           fontSize: 12,
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -116,10 +150,10 @@ class _SewaDetailsState extends State<SewaDetails> {
                                 children: [
                                   Flexible(
                                     child: Text(
-                                      item['partner_id'].toString(),
+                                      item['partner_id'][1].toString(),
                                       style: kTextStyle.copyWith(
                                           color: kTitleColor,
-                                          fontSize: 16,
+                                          fontSize: 14,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   )
@@ -136,7 +170,7 @@ class _SewaDetailsState extends State<SewaDetails> {
                                     child: Text(
                                       item['company_name'].toString(),
                                       style: kTextStyle.copyWith(
-                                          color: kTitleColor, fontSize: 12),
+                                          color: kGreyTextColor, fontSize: 10),
                                     ),
                                   )
                                 ],
@@ -148,17 +182,45 @@ class _SewaDetailsState extends State<SewaDetails> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
+                                  if (item['stat'] == 'LUNAS') ...[
+                                    Text(
+                                      item['stat'].toString(),
+                                      style: kTextStyle.copyWith(
+                                          color: kGreenColor,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ] else ...[
+                                    Text(
+                                      item['stat'].toString(),
+                                      style: kTextStyle.copyWith(
+                                          color: kAlertColor,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ]
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 20),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
                                   Flexible(
                                     child: Text(
-                                      "${item['no_hp']}",
+                                      'Rp.${formatAmount(item['totakhir'].toString())}',
                                       style: kTextStyle.copyWith(
                                           color: kGreyTextColor,
-                                          fontSize: 12,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   )
                                 ],
                               ),
+                            ),
+                            const Divider(
+                              color: kBorderColorTextField,
+                              thickness: 1.0,
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 12),
@@ -168,67 +230,7 @@ class _SewaDetailsState extends State<SewaDetails> {
                                 children: [
                                   Flexible(
                                     child: Text(
-                                      "${item['street']} ${item['city']} ${item['zip_code']}",
-                                      style: kTextStyle.copyWith(
-                                          color: kGreyTextColor,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 10.0,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 12),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Flexible(
-                                    child: Text(
-                                      item['product_nama'].toString(),
-                                      style: kTextStyle.copyWith(
-                                          color: kTitleColor,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 10.0,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 12),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Flexible(
-                                    child: Text(
-                                      "Lama Sewa : ${item['lama']} Bulan",
-                                      style: kTextStyle.copyWith(
-                                          color: kGreyTextColor,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 12),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Flexible(
-                                    child: Text(
-                                      "Periode Awal : ${item['periode_awal']}",
+                                      'Marketing : ${item['sales_user'][1]}',
                                       style: kTextStyle.copyWith(
                                           color: kMainColorlama,
                                           fontSize: 12,
@@ -246,9 +248,9 @@ class _SewaDetailsState extends State<SewaDetails> {
                                 children: [
                                   Flexible(
                                     child: Text(
-                                      "Expired : ${item['periode_akhir']}",
+                                      'Kerjaan ${item['statuskerjaan']}',
                                       style: kTextStyle.copyWith(
-                                          color: kAlertColor,
+                                          color: kTitleColor,
                                           fontSize: 12,
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -257,7 +259,7 @@ class _SewaDetailsState extends State<SewaDetails> {
                               ),
                             ),
                             const SizedBox(
-                              height: 10.0,
+                              height: 20.0,
                             ),
                           ],
                         ),
@@ -272,19 +274,37 @@ class _SewaDetailsState extends State<SewaDetails> {
     );
   }
 
-  Future<void> _getpaketdetail() async {
+  Future<void> _getinvdetail() async {
     EasyLoading.show(status: 'loading...');
-    var data = {"id": idsewa};
-    var res = await Network().auth(data, '/sewa_kator_detail');
+
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var levelnya =
+        localStorage.getString('level_id').toString().replaceAll('"', '');
+    var cabangnya =
+        localStorage.getString('cabang').toString().replaceAll('"', '');
+    var iduser =
+        localStorage.getString('iduser').toString().replaceAll('"', '');
+
+    setState(() {
+      levelid = levelnya;
+      cabangid = cabangnya;
+      userid = iduser;
+    });
+
+    var data = {
+      "name": noinv,
+      "level_id": levelid,
+      "kodenya": '1',
+      "cabang": cabangid,
+      "iduser": userid
+    };
+
+    var res = await Network().auth(data, '/proforma_ruang');
     var body = json.decode(res.body);
 
     setState(() {
       listdata = body['result'];
     });
     EasyLoading.dismiss();
-  }
-
-  Uint8List convertBase64Image(String base64String) {
-    return const Base64Decoder().convert(base64String);
   }
 }

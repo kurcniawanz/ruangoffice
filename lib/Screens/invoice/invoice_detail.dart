@@ -28,6 +28,10 @@ class _KerjaDetailsState extends State<KerjaDetails> {
   List listdata = [];
   bool isChecked = false;
 
+  String levelid = '';
+  String cabangid = '';
+  String userid = '';
+
   @override
   void initState() {
     super.initState();
@@ -104,6 +108,22 @@ class _KerjaDetailsState extends State<KerjaDetails> {
                         ),
                         child: Column(
                           children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 20),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Flexible(
+                                    child: Text(
+                                      item['industry_id'][1].toString(),
+                                      style: kTextStyle.copyWith(
+                                          color: kMainColor,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
                             Padding(
                               padding: const EdgeInsets.only(left: 12),
                               child: Row(
@@ -256,7 +276,29 @@ class _KerjaDetailsState extends State<KerjaDetails> {
 
   Future<void> _getinvdetail() async {
     EasyLoading.show(status: 'loading...');
-    var data = {"name": noinv};
+
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var levelnya =
+        localStorage.getString('level_id').toString().replaceAll('"', '');
+    var cabangnya =
+        localStorage.getString('cabang').toString().replaceAll('"', '');
+    var iduser =
+        localStorage.getString('iduser').toString().replaceAll('"', '');
+
+    setState(() {
+      levelid = levelnya;
+      cabangid = cabangnya;
+      userid = iduser;
+    });
+
+    var data = {
+      "name": noinv,
+      "level_id": levelid,
+      "kodenya": '1',
+      "cabang": cabangid,
+      "iduser": userid
+    };
+
     var res = await Network().auth(data, '/invoice_ruang');
     var body = json.decode(res.body);
 

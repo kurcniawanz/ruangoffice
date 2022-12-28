@@ -91,6 +91,21 @@ class _PaketDetailsState extends State<PaketDetails> {
                         child: Column(
                           children: [
                             Padding(
+                              padding: const EdgeInsets.only(right: 12),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    item['cabang_id'].toString(),
+                                    style: kTextStyle.copyWith(
+                                        color: kMainColor,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
                               padding: const EdgeInsets.only(left: 12),
                               child: Row(
                                 mainAxisAlignment:
@@ -101,7 +116,7 @@ class _PaketDetailsState extends State<PaketDetails> {
                                       item['sewa_id'].toString(),
                                       style: kTextStyle.copyWith(
                                           color: kTitleColor,
-                                          fontSize: 16,
+                                          fontSize: 14,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   )
@@ -118,7 +133,7 @@ class _PaketDetailsState extends State<PaketDetails> {
                                     child: Text(
                                       item['company_name'].toString(),
                                       style: kTextStyle.copyWith(
-                                          color: kTitleColor, fontSize: 14),
+                                          color: kGreyTextColor, fontSize: 12),
                                     ),
                                   )
                                 ],

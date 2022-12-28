@@ -160,6 +160,25 @@ class _PaketListState extends State<PaketList> {
                                 Row(
                                   children: [
                                     Text(
+                                      '',
+                                      style: kTextStyle.copyWith(
+                                          color: kTitleColor,
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    const Spacer(),
+                                    Text(
+                                      item['cabang_id'].toString(),
+                                      style: kTextStyle.copyWith(
+                                          color: kMainColor,
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
                                       item['name'].toString(),
                                       style: kTextStyle.copyWith(
                                           color: kGreyTextColor,

@@ -6,17 +6,17 @@ import 'package:nb_utils/nb_utils.dart';
 
 import '../../constant.dart';
 import '../../network/api.dart';
-import 'invoice_detail.dart';
+import 'proforma_detail.dart';
 
-class KerjaList extends StatefulWidget {
-  const KerjaList({Key? key}) : super(key: key);
+class ProformaList extends StatefulWidget {
+  const ProformaList({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _KerjaListState createState() => _KerjaListState();
+  _ProformaListState createState() => _ProformaListState();
 }
 
-class _KerjaListState extends State<KerjaList> {
+class _ProformaListState extends State<ProformaList> {
   List listdata = [];
   String ketdata = '';
 
@@ -58,7 +58,7 @@ class _KerjaListState extends State<KerjaList> {
         titleSpacing: 0.0,
         iconTheme: const IconThemeData(color: Colors.white),
         title: Text(
-          'List Invoice',
+          'List Pro-Forma',
           maxLines: 2,
           style: kTextStyle.copyWith(
               color: Colors.white, fontWeight: FontWeight.bold),
@@ -134,7 +134,7 @@ class _KerjaListState extends State<KerjaList> {
                       textFieldType: TextFieldType.NAME,
                       decoration: const InputDecoration(
                         labelText: 'Search',
-                        hintText: 'e.g INV001',
+                        hintText: 'e.g PNV001',
                         border: OutlineInputBorder(),
                       ),
                       onChanged: (value) {
@@ -152,7 +152,7 @@ class _KerjaListState extends State<KerjaList> {
                         child: GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => KerjaDetails(
+                                builder: (context) => ProformaDetails(
                                     noinv: item['name'].toString())));
                           },
                           child: Container(
@@ -321,7 +321,7 @@ class _KerjaListState extends State<KerjaList> {
       "cabang": cabangid,
       "iduser": userid
     };
-    var res = await Network().auth(data, '/invoice_ruang');
+    var res = await Network().auth(data, '/proforma_ruang');
     var body = json.decode(res.body);
     setState(() {
       listdata = body['result'];
@@ -347,7 +347,7 @@ class _KerjaListState extends State<KerjaList> {
       "cabang": cabangid,
       "iduser": userid
     };
-    var res = await Network().auth(data, '/invoice_ruang');
+    var res = await Network().auth(data, '/proforma_ruang');
     var body = json.decode(res.body);
     setState(() {
       listdata = body['result'];

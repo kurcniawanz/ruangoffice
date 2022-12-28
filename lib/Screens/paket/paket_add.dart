@@ -144,11 +144,18 @@ class _PaketAddState extends State<PaketAdd> {
                     height: 20.0,
                   ),
                   if (filename != '')
-                    Text(
-                      filename,
-                      textAlign: TextAlign.center,
-                      style: kTextStyle.copyWith(
-                          color: kGreyTextColor, fontSize: 10),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.memory(convertBase64Image(base64file),
+                              gaplessPlayback: true,
+                              width: 200,
+                              height: 300,
+                              fit: BoxFit.fill)
+                        ],
+                      ),
                     ),
                   const SizedBox(
                     height: 20.0,
