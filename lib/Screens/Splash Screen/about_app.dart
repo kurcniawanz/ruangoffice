@@ -60,7 +60,7 @@ class _AboutScreenState extends State<AboutScreen> {
             Text(
               'RuangOffice.com',
               style: GoogleFonts.manrope(
-                  color: Colors.black,
+                  color: kMainColor,
                   fontWeight: FontWeight.bold,
                   fontSize: 30.0),
             ),
@@ -69,9 +69,9 @@ class _AboutScreenState extends State<AboutScreen> {
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 10.0),
                 child: Text(
-                  'Version 1.0.6',
+                  'Version 1.0.7',
                   style: GoogleFonts.manrope(
-                      color: Colors.black,
+                      color: kMainColor,
                       fontWeight: FontWeight.normal,
                       fontSize: 15.0),
                 ),
