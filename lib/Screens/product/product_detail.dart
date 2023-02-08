@@ -120,54 +120,54 @@ class _ProductDetailsState extends State<ProductDetails> {
                                 ],
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 12),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Flexible(
-                                    child: Text(
-                                      item['cek_komisi'].toString(),
-                                      style: kTextStyle.copyWith(
-                                          color: kMainColorlama, fontSize: 10),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 12),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Flexible(
-                                    child: Text(
-                                      item['cek_ppn'].toString(),
-                                      style: kTextStyle.copyWith(
-                                          color: kMainColorlama, fontSize: 10),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 12),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Flexible(
-                                    child: Text(
-                                      item['textsewa'].toString(),
-                                      style: kTextStyle.copyWith(
-                                          color: kMainColorlama, fontSize: 10),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
+                            // Padding(
+                            //   padding: const EdgeInsets.only(left: 12),
+                            //   child: Row(
+                            //     mainAxisAlignment:
+                            //         MainAxisAlignment.spaceBetween,
+                            //     children: [
+                            //       Flexible(
+                            //         child: Text(
+                            //           item['cek_komisi'].toString(),
+                            //           style: kTextStyle.copyWith(
+                            //               color: kMainColorlama, fontSize: 10),
+                            //         ),
+                            //       )
+                            //     ],
+                            //   ),
+                            // ),
+                            // Padding(
+                            //   padding: const EdgeInsets.only(left: 12),
+                            //   child: Row(
+                            //     mainAxisAlignment:
+                            //         MainAxisAlignment.spaceBetween,
+                            //     children: [
+                            //       Flexible(
+                            //         child: Text(
+                            //           item['cek_ppn'].toString(),
+                            //           style: kTextStyle.copyWith(
+                            //               color: kMainColorlama, fontSize: 10),
+                            //         ),
+                            //       )
+                            //     ],
+                            //   ),
+                            // ),
+                            // Padding(
+                            //   padding: const EdgeInsets.only(left: 12),
+                            //   child: Row(
+                            //     mainAxisAlignment:
+                            //         MainAxisAlignment.spaceBetween,
+                            //     children: [
+                            //       Flexible(
+                            //         child: Text(
+                            //           item['textsewa'].toString(),
+                            //           style: kTextStyle.copyWith(
+                            //               color: kMainColorlama, fontSize: 10),
+                            //         ),
+                            //       )
+                            //     ],
+                            //   ),
+                            // ),
                             Padding(
                               padding: const EdgeInsets.only(right: 20),
                               child: Row(

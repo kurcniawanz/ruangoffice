@@ -9,6 +9,7 @@ import 'package:nb_utils/nb_utils.dart';
 
 import '../../constant.dart';
 import '../../network/api.dart';
+import 'meeting_list.dart';
 
 // ignore: must_be_immutable
 class SewaDetails extends StatefulWidget {
@@ -230,7 +231,7 @@ class _SewaDetailsState extends State<SewaDetails> {
                                     child: Text(
                                       "Periode Awal : ${item['periode_awal']}",
                                       style: kTextStyle.copyWith(
-                                          color: kMainColorlama,
+                                          color: kGreyTextColor,
                                           fontSize: 12,
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -248,11 +249,46 @@ class _SewaDetailsState extends State<SewaDetails> {
                                     child: Text(
                                       "Expired : ${item['periode_akhir']}",
                                       style: kTextStyle.copyWith(
-                                          color: kAlertColor,
+                                          color: kGreyTextColor,
                                           fontSize: 12,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   )
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10.0,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 12, right: 12),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Free meeting ${item['sisa_meeting']} jam',
+                                    style: kTextStyle.copyWith(
+                                        color: kMainColorlama,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  const Spacer(),
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) => MeetingList(
+                                                  idsewa:
+                                                      item['id'].toString())));
+                                    },
+                                    child: Text(
+                                      'detail >',
+                                      style: kTextStyle.copyWith(
+                                          color: kGreyTextColor,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),

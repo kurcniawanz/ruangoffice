@@ -68,11 +68,17 @@ class _ProductListState extends State<ProductList> {
           style: kTextStyle.copyWith(
               color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        // actions: const [
-        //   Image(
-        //     image: AssetImage('images/employeesearch.png'),
-        //   ),
-        // ],
+        actions: [
+          IconButton(
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: CustomSearchDelegate(listdata),
+              );
+            },
+            icon: const Icon(Icons.search),
+          )
+        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,25 +100,6 @@ class _ProductListState extends State<ProductList> {
                 children: [
                   const SizedBox(
                     height: 10.0,
-                  ),
-                  SizedBox(
-                    height: 40.0,
-                    child: AppTextField(
-                      // controller: userController,
-                      textFieldType: TextFieldType.NAME,
-                      decoration: const InputDecoration(
-                        labelText: 'Search',
-                        hintText: 'e.g virtual office',
-                        border: OutlineInputBorder(),
-                      ),
-                      onChanged: (value) {
-                        _searchproduct(value);
-                        // email = value;
-                      },
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20.0,
                   ),
                   if (listdata.isNotEmpty) ...[
                     for (var item in listdata)
@@ -252,13 +239,106 @@ class _ProductListState extends State<ProductList> {
     }
     EasyLoading.dismiss();
   }
+}
 
-  Future<void> _searchproduct(String valsearch) async {
-    var data = {"name": valsearch};
-    var res = await Network().auth(data, '/product_ruang_search');
-    var body = json.decode(res.body);
-    setState(() {
-      listdata = body['result'];
-    });
+class CustomSearchDelegate extends SearchDelegate {
+  final List listdata;
+  CustomSearchDelegate(this.listdata);
+
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+        onPressed: () {
+          query = '';
+        },
+        icon: const Icon(Icons.clear),
+      ),
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        close(context, null);
+      },
+      icon: const Icon(Icons.arrow_back),
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    List matchQuery = [];
+    for (var fruit in listdata) {
+      if (fruit['name'].toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add({
+          // ignore: prefer_interpolation_to_compose_strings
+          'name': fruit['name'],
+          'id': fruit['id']
+        });
+      }
+    }
+
+    return ListView.builder(
+        itemCount: matchQuery.length,
+        itemBuilder: (context, index) {
+          var result = matchQuery[index];
+          return ListTile(
+            title: Text(
+              result['name'],
+              style: kTextStyle.copyWith(color: kGreyTextColor, fontSize: 12),
+            ),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>
+                      ProductDetails(idproduct: result['id'].toString())));
+            },
+          );
+        });
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List matchQuery = [];
+    for (var fruit in listdata) {
+      if (fruit['name'].toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add({
+          // ignore: prefer_interpolation_to_compose_strings
+          'name': fruit['name'],
+          'id': fruit['id']
+        });
+      }
+    }
+
+    return ListView.builder(
+        itemCount: matchQuery.length,
+        itemBuilder: (context, index) {
+          var result = matchQuery[index];
+          return InkWell(
+            child: Padding(
+                padding: const EdgeInsets.only(
+                    left: 8.0, right: 8.0, top: 10.0, bottom: 10.0),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            // ignore: prefer_interpolation_to_compose_strings
+                            result['name'],
+                            style: kTextStyle.copyWith(
+                                color: kTitleColor, fontSize: 12),
+                          ),
+                        ],
+                      ),
+                    ])),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>
+                      ProductDetails(idproduct: result['id'].toString())));
+            },
+          );
+        });
   }
 }

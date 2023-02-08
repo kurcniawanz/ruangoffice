@@ -54,7 +54,10 @@ class _PaketAddState extends State<PaketAdd> {
     for (var emp in listdata) {
       var item = DropdownMenuItem(
         value: emp['id'].toString(),
-        child: Text(emp['partner_id'].toString()),
+        child: Text(
+          emp['partner_id'].toString(),
+          style: const TextStyle(fontSize: 12),
+        ),
       );
       dropDownItems.add(item);
     }
