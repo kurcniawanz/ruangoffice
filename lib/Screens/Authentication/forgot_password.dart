@@ -1,5 +1,4 @@
-import 'package:country_code_picker/country_code_picker.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:nb_utils/nb_utils.dart';
 
 import '../../GlobalComponents/button_global.dart';
@@ -53,29 +52,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 children: [
                   const SizedBox(
                     height: 20.0,
-                  ),
-                  SizedBox(
-                    height: 60.0,
-                    child: AppTextField(
-                      textFieldType: TextFieldType.PHONE,
-                      controller: TextEditingController(),
-                      enabled: true,
-                      decoration: InputDecoration(
-                        labelText: 'Phone Number',
-                        hintText: '1767 432556',
-                        labelStyle: kTextStyle,
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                        border: const OutlineInputBorder(),
-                        prefixIcon: CountryCodePicker(
-                          padding: EdgeInsets.zero,
-                          onChanged: print,
-                          initialSelection: 'BD',
-                          showFlag: false,
-                          showDropDownButton: true,
-                          alignLeft: false,
-                        ),
-                      ),
-                    ),
                   ),
                   const SizedBox(
                     height: 20.0,

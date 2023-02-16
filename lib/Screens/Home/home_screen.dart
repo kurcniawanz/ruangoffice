@@ -4,7 +4,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badgee;
 import 'package:just_audio/just_audio.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:intl/intl.dart';
@@ -152,8 +152,8 @@ class _HomeScreenState extends State<HomeScreen> {
             actions: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(10.0, 10.0, 20.0, 10.0),
-                child: Badge(
-                  position: BadgePosition.topStart(),
+                child: badgee.Badge(
+                  position: badgee.BadgePosition.topStart(),
                   badgeContent: Text(
                     notifall,
                     style: kTextStyle.copyWith(
@@ -673,8 +673,8 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Center(
-                  child: Badge(
-                    position: BadgePosition.topStart(),
+                  child: badgee.Badge(
+                    position: badgee.BadgePosition.topStart(),
                     badgeContent: Text(notifpaket,
                         style: const TextStyle(color: Colors.white)),
                     child: const Image(

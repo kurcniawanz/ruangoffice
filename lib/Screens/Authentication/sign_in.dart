@@ -268,34 +268,6 @@ class _SignInState extends State<SignIn> {
         setState(() {
           isChecked = false;
         });
-        showDialog<String>(
-          context: context,
-          builder: (BuildContext context) => AlertDialog(
-            title: Text(
-              'RuangOffice.com',
-              style: kTextStyle.copyWith(color: kTitleColor, fontSize: 14),
-            ),
-            content: const SizedBox(
-              width: 150,
-              height: 40,
-              child: Center(child: Text('Username/Password salah.')),
-            ),
-            actions: [
-              SizedBox(
-                width: 60,
-                height: 30,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: kAlertColor,
-                  ),
-                  onPressed: () => Navigator.pop(context, 'OK'),
-                  //return false when click on "NO"
-                  child: const Text('OK'),
-                ),
-              ),
-            ],
-          ),
-        );
       }
     }
   }
