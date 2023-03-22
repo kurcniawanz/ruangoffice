@@ -31,8 +31,19 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Ruangoffice requires access to the camera to take picture.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Ruangoffice does not require access to the microphone.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Ruangoffice requires access to the photo library.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>Main.storyboard</string>
 	<key>UIMainStoryboardFile</key>
