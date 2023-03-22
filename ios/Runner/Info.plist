@@ -32,11 +32,11 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Ruangoffice requires access to the camera to take picture.</string>
+	<string>The camera will be used to take pictures of packages, or to fill out other documents that require photos as a requirement. Your photos will not be shared with others.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Ruangoffice does not require access to the microphone.</string>
+	<string>Microphone may one day be needed to record video to meet document requirements.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Ruangoffice requires access to the photo library.</string>
+	<string>Photo Library will be used to be a picture of packages, or to fill out other documents that require photos as a requirement. Your photos will not be shared with others.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>
