@@ -25,8 +25,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         iconTheme: const IconThemeData(color: Colors.white),
         title: Text(
           'Forgot Password',
-          style: kTextStyle.copyWith(
-              color: Colors.white, fontWeight: FontWeight.bold),
+          style: kTextStyle.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
       body: Column(
@@ -35,7 +34,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: Text(
-              'Lorem ipsum dolor sit amet, consectetur.',
+              'Click the button below to send OTP to your registered account number',
               style: kTextStyle.copyWith(color: Colors.white),
             ),
           ),
@@ -43,9 +42,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             child: Container(
               padding: const EdgeInsets.all(20.0),
               decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30.0),
-                    topRight: Radius.circular(30.0)),
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0)),
                 color: Colors.white,
               ),
               child: Column(
@@ -58,8 +55,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   ),
                   ButtonGlobal(
                     buttontext: 'Get Otp',
-                    buttonDecoration:
-                        kButtonDecoration.copyWith(color: kMainColor),
+                    buttonDecoration: kButtonDecoration.copyWith(color: kMainColor),
                     onPressed: () {
                       const PhoneVerification().launch(context);
                     },
