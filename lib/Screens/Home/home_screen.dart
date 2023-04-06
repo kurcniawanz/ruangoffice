@@ -12,6 +12,7 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
 import '../../constant.dart';
 // import '../../network/api.dart';
+import '../Authentication/sign_in.dart';
 import '../Splash Screen/about_app.dart';
 import '../invoice/invoice_list.dart';
 import '../paket/paket_list.dart';
@@ -116,352 +117,319 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-        onWillPop: showExitPopup,
-        child: Scaffold(
-          resizeToAvoidBottomInset: false,
+      onWillPop: showExitPopup,
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: kMainColor,
+        appBar: AppBar(
           backgroundColor: kMainColor,
-          appBar: AppBar(
-            backgroundColor: kMainColor,
-            elevation: 0.0,
-            iconTheme: const IconThemeData(color: Colors.white),
-            title: ListTile(
-              contentPadding: EdgeInsets.zero,
-              // leading: CircleAvatar(
-              //   radius: 20.0,
-              //   backgroundImage: MemoryImage(
-              //     convertBase64Image(profile),
-              //   ),
-              // ).onTap(() {
-              //   getDatatoken();
-              // }),
-              title: Text(
-                nameprofilile,
-                style: kTextStyle.copyWith(
-                    color: Colors.white,
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w800),
-              ),
-              subtitle: Text(
-                mobile,
-                style: kTextStyle.copyWith(
-                    color: Colors.white,
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.w100),
+          elevation: 0.0,
+          iconTheme: const IconThemeData(color: Colors.white),
+          title: ListTile(
+            contentPadding: EdgeInsets.zero,
+            // leading: CircleAvatar(
+            //   radius: 20.0,
+            //   backgroundImage: MemoryImage(
+            //     convertBase64Image(profile),
+            //   ),
+            // ).onTap(() {
+            //   getDatatoken();
+            // }),
+            title: Text(
+              nameprofilile,
+              style: kTextStyle.copyWith(color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.w800),
+            ),
+            subtitle: Text(
+              mobile,
+              style: kTextStyle.copyWith(color: Colors.white, fontSize: 12.0, fontWeight: FontWeight.w100),
+            ),
+          ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10.0, 10.0, 20.0, 10.0),
+              child: badgee.Badge(
+                position: badgee.BadgePosition.topStart(),
+                badgeContent: Text(
+                  notifall,
+                  style: kTextStyle.copyWith(color: Colors.white, fontSize: 10.0, fontWeight: FontWeight.w800),
+                ),
+                child: const Image(
+                  image: AssetImage('images/bell.png'),
+                  width: 35,
+                  height: 35,
+                ).onTap(() {
+                  getDatatoken();
+                }),
               ),
             ),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10.0, 10.0, 20.0, 10.0),
-                child: badgee.Badge(
-                  position: badgee.BadgePosition.topStart(),
-                  badgeContent: Text(
-                    notifall,
-                    style: kTextStyle.copyWith(
-                        color: Colors.white,
-                        fontSize: 10.0,
-                        fontWeight: FontWeight.w800),
-                  ),
-                  child: const Image(
-                    image: AssetImage('images/bell.png'),
-                    width: 35,
-                    height: 35,
-                  ).onTap(() {
-                    getDatatoken();
-                  }),
+          ],
+        ),
+        drawer: Drawer(
+          child: ListView(
+            children: [
+              Container(
+                height: context.height() / 2.4,
+                decoration: const BoxDecoration(
+                  borderRadius:
+                      BorderRadius.only(bottomLeft: Radius.circular(30.0), bottomRight: Radius.circular(30.0)),
+                  color: kMainColor,
                 ),
+                child: Column(
+                  children: [
+                    Container(
+                      height: context.height() / 4,
+                      decoration: const BoxDecoration(
+                        borderRadius:
+                            BorderRadius.only(bottomLeft: Radius.circular(30.0), bottomRight: Radius.circular(30.0)),
+                        color: Colors.white,
+                      ),
+                      child: Center(
+                        child: Column(
+                          children: [
+                            const SizedBox(height: 10.0),
+                            // CircleAvatar(
+                            //   radius: 60.0,
+                            //   backgroundColor: kMainColor,
+                            //   backgroundImage: MemoryImage(
+                            //     convertBase64Image(profile),
+                            //   ),
+                            // ),
+                            const SizedBox(height: 15.0),
+                            Text(
+                              nameprofilile,
+                              style: kTextStyle.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+                            ),
+                          ],
+                        ).onTap(() {
+                          getDatatoken();
+                        }),
+                      ),
+                    ),
+                    // const SizedBox(
+                    //   height: 10.0,
+                    // ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     SizedBox(
+                    //       width: 100,
+                    //       child: Text(
+                    //         'Tgl.Gajian  : ',
+                    //         textAlign: TextAlign.right,
+                    //         style: kTextStyle.copyWith(
+                    //             color: Colors.white,
+                    //             fontSize: 12.0,
+                    //             fontWeight: FontWeight.bold),
+                    //       ),
+                    //     ),
+                    //     SizedBox(
+                    //       width: 100,
+                    //       child: Text(
+                    //         "  $tglgaji",
+                    //         textAlign: TextAlign.left,
+                    //         style: kTextStyle.copyWith(
+                    //             color: Colors.white,
+                    //             fontSize: 12.0,
+                    //             fontWeight: FontWeight.bold),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    // const SizedBox(
+                    //   height: 5.0,
+                    // ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     SizedBox(
+                    //       width: 100,
+                    //       child: Text(
+                    //         'Gaji Pokok  : ',
+                    //         textAlign: TextAlign.right,
+                    //         style: kTextStyle.copyWith(
+                    //             color: Colors.greenAccent,
+                    //             fontSize: 12.0,
+                    //             fontWeight: FontWeight.bold),
+                    //       ),
+                    //     ),
+                    //     SizedBox(
+                    //       width: 100,
+                    //       child: Text(
+                    //         '  Rp. ${formatAmount(pokok)}',
+                    //         textAlign: TextAlign.left,
+                    //         style: kTextStyle.copyWith(
+                    //             color: Colors.greenAccent,
+                    //             fontSize: 12.0,
+                    //             fontWeight: FontWeight.bold),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    // const SizedBox(
+                    //   height: 5.0,
+                    // ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     SizedBox(
+                    //       width: 100,
+                    //       child: Text(
+                    //         'Kasbon  : ',
+                    //         textAlign: TextAlign.right,
+                    //         style: kTextStyle.copyWith(
+                    //             color: Colors.yellow,
+                    //             fontSize: 12.0,
+                    //             fontWeight: FontWeight.bold),
+                    //       ),
+                    //     ),
+                    //     SizedBox(
+                    //       width: 100,
+                    //       child: Text(
+                    //         '  Rp. ${formatAmount(totalkasbon)}',
+                    //         textAlign: TextAlign.left,
+                    //         style: kTextStyle.copyWith(
+                    //             color: Colors.yellow,
+                    //             fontSize: 12.0,
+                    //             fontWeight: FontWeight.bold),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    // const SizedBox(
+                    //   height: 5.0,
+                    // ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     SizedBox(
+                    //       width: 100,
+                    //       child: Text(
+                    //         'Potongan  : ',
+                    //         textAlign: TextAlign.right,
+                    //         style: kTextStyle.copyWith(
+                    //             color: Colors.yellow,
+                    //             fontSize: 12.0,
+                    //             fontWeight: FontWeight.bold),
+                    //       ),
+                    //     ),
+                    //     SizedBox(
+                    //       width: 100,
+                    //       child: Text(
+                    //         '  Rp. 0',
+                    //         textAlign: TextAlign.left,
+                    //         style: kTextStyle.copyWith(
+                    //             color: Colors.yellow,
+                    //             fontSize: 12.0,
+                    //             fontWeight: FontWeight.bold),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    // const SizedBox(
+                    //   height: 5.0,
+                    // ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     SizedBox(
+                    //       width: 100,
+                    //       child: Text(
+                    //         'Sisa Gaji  : ',
+                    //         textAlign: TextAlign.right,
+                    //         style: kTextStyle.copyWith(
+                    //             color: Colors.greenAccent,
+                    //             fontSize: 12.0,
+                    //             fontWeight: FontWeight.bold),
+                    //       ),
+                    //     ),
+                    //     SizedBox(
+                    //       width: 100,
+                    //       child: Text(
+                    //         '  Rp. ${formatAmount(sisagaji)}',
+                    //         textAlign: TextAlign.left,
+                    //         style: kTextStyle.copyWith(
+                    //             color: Colors.greenAccent,
+                    //             fontSize: 12.0,
+                    //             fontWeight: FontWeight.bold),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                  ],
+                ),
+              ),
+              ListTile(
+                onTap: () => const AboutScreen().launch(context),
+                title: Text(
+                  'About App',
+                  style: kTextStyle.copyWith(color: kTitleColor),
+                ),
+                leading: const Icon(
+                  FeatherIcons.alertTriangle,
+                  color: kMainColor,
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  'Logout',
+                  style: kTextStyle.copyWith(color: kTitleColor),
+                ),
+                leading: const Icon(
+                  FeatherIcons.logOut,
+                  color: kMainColor,
+                ),
+                onTap: () {
+                  _logoutt();
+                },
               ),
             ],
           ),
-          drawer: Drawer(
-            child: ListView(
-              children: [
-                Container(
-                  height: context.height() / 2.4,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(30.0),
-                        bottomRight: Radius.circular(30.0)),
-                    color: kMainColor,
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        height: context.height() / 4,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(30.0),
-                              bottomRight: Radius.circular(30.0)),
-                          color: Colors.white,
-                        ),
-                        child: Center(
-                          child: Column(
-                            children: [
-                              const SizedBox(
-                                height: 10.0,
-                              ),
-                              // CircleAvatar(
-                              //   radius: 60.0,
-                              //   backgroundColor: kMainColor,
-                              //   backgroundImage: MemoryImage(
-                              //     convertBase64Image(profile),
-                              //   ),
-                              // ),
-                              const SizedBox(
-                                height: 15.0,
-                              ),
-                              Text(
-                                nameprofilile,
-                                style: kTextStyle.copyWith(
-                                    fontWeight: FontWeight.bold, fontSize: 18),
-                              ),
-                            ],
-                          ).onTap(() {
-                            getDatatoken();
-                          }),
-                        ),
-                      ),
-                      // const SizedBox(
-                      //   height: 10.0,
-                      // ),
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.center,
-                      //   children: [
-                      //     SizedBox(
-                      //       width: 100,
-                      //       child: Text(
-                      //         'Tgl.Gajian  : ',
-                      //         textAlign: TextAlign.right,
-                      //         style: kTextStyle.copyWith(
-                      //             color: Colors.white,
-                      //             fontSize: 12.0,
-                      //             fontWeight: FontWeight.bold),
-                      //       ),
-                      //     ),
-                      //     SizedBox(
-                      //       width: 100,
-                      //       child: Text(
-                      //         "  $tglgaji",
-                      //         textAlign: TextAlign.left,
-                      //         style: kTextStyle.copyWith(
-                      //             color: Colors.white,
-                      //             fontSize: 12.0,
-                      //             fontWeight: FontWeight.bold),
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
-                      // const SizedBox(
-                      //   height: 5.0,
-                      // ),
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.center,
-                      //   children: [
-                      //     SizedBox(
-                      //       width: 100,
-                      //       child: Text(
-                      //         'Gaji Pokok  : ',
-                      //         textAlign: TextAlign.right,
-                      //         style: kTextStyle.copyWith(
-                      //             color: Colors.greenAccent,
-                      //             fontSize: 12.0,
-                      //             fontWeight: FontWeight.bold),
-                      //       ),
-                      //     ),
-                      //     SizedBox(
-                      //       width: 100,
-                      //       child: Text(
-                      //         '  Rp. ${formatAmount(pokok)}',
-                      //         textAlign: TextAlign.left,
-                      //         style: kTextStyle.copyWith(
-                      //             color: Colors.greenAccent,
-                      //             fontSize: 12.0,
-                      //             fontWeight: FontWeight.bold),
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
-                      // const SizedBox(
-                      //   height: 5.0,
-                      // ),
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.center,
-                      //   children: [
-                      //     SizedBox(
-                      //       width: 100,
-                      //       child: Text(
-                      //         'Kasbon  : ',
-                      //         textAlign: TextAlign.right,
-                      //         style: kTextStyle.copyWith(
-                      //             color: Colors.yellow,
-                      //             fontSize: 12.0,
-                      //             fontWeight: FontWeight.bold),
-                      //       ),
-                      //     ),
-                      //     SizedBox(
-                      //       width: 100,
-                      //       child: Text(
-                      //         '  Rp. ${formatAmount(totalkasbon)}',
-                      //         textAlign: TextAlign.left,
-                      //         style: kTextStyle.copyWith(
-                      //             color: Colors.yellow,
-                      //             fontSize: 12.0,
-                      //             fontWeight: FontWeight.bold),
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
-                      // const SizedBox(
-                      //   height: 5.0,
-                      // ),
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.center,
-                      //   children: [
-                      //     SizedBox(
-                      //       width: 100,
-                      //       child: Text(
-                      //         'Potongan  : ',
-                      //         textAlign: TextAlign.right,
-                      //         style: kTextStyle.copyWith(
-                      //             color: Colors.yellow,
-                      //             fontSize: 12.0,
-                      //             fontWeight: FontWeight.bold),
-                      //       ),
-                      //     ),
-                      //     SizedBox(
-                      //       width: 100,
-                      //       child: Text(
-                      //         '  Rp. 0',
-                      //         textAlign: TextAlign.left,
-                      //         style: kTextStyle.copyWith(
-                      //             color: Colors.yellow,
-                      //             fontSize: 12.0,
-                      //             fontWeight: FontWeight.bold),
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
-                      // const SizedBox(
-                      //   height: 5.0,
-                      // ),
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.center,
-                      //   children: [
-                      //     SizedBox(
-                      //       width: 100,
-                      //       child: Text(
-                      //         'Sisa Gaji  : ',
-                      //         textAlign: TextAlign.right,
-                      //         style: kTextStyle.copyWith(
-                      //             color: Colors.greenAccent,
-                      //             fontSize: 12.0,
-                      //             fontWeight: FontWeight.bold),
-                      //       ),
-                      //     ),
-                      //     SizedBox(
-                      //       width: 100,
-                      //       child: Text(
-                      //         '  Rp. ${formatAmount(sisagaji)}',
-                      //         textAlign: TextAlign.left,
-                      //         style: kTextStyle.copyWith(
-                      //             color: Colors.greenAccent,
-                      //             fontSize: 12.0,
-                      //             fontWeight: FontWeight.bold),
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
-                    ],
-                  ),
-                ),
-                ListTile(
-                  onTap: () => const AboutScreen().launch(context),
-                  title: Text(
-                    'About App',
-                    style: kTextStyle.copyWith(color: kTitleColor),
-                  ),
-                  leading: const Icon(
-                    FeatherIcons.alertTriangle,
-                    color: kMainColor,
-                  ),
-                ),
-                ListTile(
-                  title: Text(
-                    'Logout',
-                    style: kTextStyle.copyWith(color: kTitleColor),
-                  ),
-                  leading: const Icon(
-                    FeatherIcons.logOut,
-                    color: kMainColor,
-                  ),
-                  onTap: () {
-                    _logoutt();
-                  },
-                ),
-              ],
+        ),
+        body: Container(
+          padding: const EdgeInsets.all(20.0),
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30.0),
+              topRight: Radius.circular(30.0),
             ),
+            color: Colors.white,
           ),
-          body: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 10.0,
-                ),
-                Container(
-                  padding: const EdgeInsets.all(20.0),
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(30.0),
-                        topRight: Radius.circular(30.0)),
-                    color: Colors.white,
+          child: Column(
+            children: [
+              const SizedBox(height: 10.0),
+              Row(
+                children: [
+                  Expanded(
+                    child: _materialproduct(),
                   ),
-                  child: Column(
-                    children: [
-                      const SizedBox(
-                        height: 10.0,
-                      ),
-                      Row(
-                        children: [
-                          Expanded(child: _materialproduct()),
-                          const SizedBox(
-                            width: 20.0,
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 20.0,
-                      ),
-                      Row(
-                        children: [
-                          Expanded(child: _materialproforma()),
-                          const SizedBox(
-                            width: 20.0,
-                          ),
-                          Expanded(child: _materialinvoice()),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 20.0,
-                      ),
-                      Row(
-                        children: [
-                          Expanded(child: _materialsewa()),
-                          const SizedBox(
-                            width: 20.0,
-                          ),
-                          Expanded(child: _materialpaket()),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 450.0,
-                      ),
-                    ],
+                  const SizedBox(width: 20.0),
+                ],
+              ),
+              const SizedBox(height: 20.0),
+              Row(
+                children: [
+                  Expanded(
+                    child: _materialproforma(),
                   ),
-                ),
-              ],
-            ),
+                  const SizedBox(width: 20.0),
+                  Expanded(
+                    child: _materialinvoice(),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20.0),
+              Row(
+                children: [
+                  Expanded(child: _materialsewa()),
+                  const SizedBox(width: 20.0),
+                  Expanded(child: _materialpaket()),
+                ],
+              ),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 
   Material _materialinvoice() {
@@ -497,8 +465,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Center(
                 child: Text(
                   'Invoice',
-                  style: kTextStyle.copyWith(
-                      color: kTitleColor, fontWeight: FontWeight.bold),
+                  style: kTextStyle.copyWith(color: kTitleColor, fontWeight: FontWeight.bold),
                 ),
               ),
             ],
@@ -543,8 +510,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Center(
                 child: Text(
                   'Pro-Forma',
-                  style: kTextStyle.copyWith(
-                      color: kTitleColor, fontWeight: FontWeight.bold),
+                  style: kTextStyle.copyWith(color: kTitleColor, fontWeight: FontWeight.bold),
                 ),
               ),
             ],
@@ -589,8 +555,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Center(
                 child: Text(
                   'Product',
-                  style: kTextStyle.copyWith(
-                      color: kTitleColor, fontWeight: FontWeight.bold),
+                  style: kTextStyle.copyWith(color: kTitleColor, fontWeight: FontWeight.bold),
                 ),
               ),
             ],
@@ -635,8 +600,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Center(
                 child: Text(
                   'Sewa Kantor',
-                  style: kTextStyle.copyWith(
-                      color: kTitleColor, fontWeight: FontWeight.bold),
+                  style: kTextStyle.copyWith(color: kTitleColor, fontWeight: FontWeight.bold),
                 ),
               ),
             ],
@@ -675,8 +639,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Center(
                   child: badgee.Badge(
                     position: badgee.BadgePosition.topStart(),
-                    badgeContent: Text(notifpaket,
-                        style: const TextStyle(color: Colors.white)),
+                    badgeContent: Text(notifpaket, style: const TextStyle(color: Colors.white)),
                     child: const Image(
                       image: AssetImage('images/paket.png'),
                       height: 100,
@@ -687,8 +650,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Text(
                     'Paket',
                     maxLines: 2,
-                    style: kTextStyle.copyWith(
-                        color: kTitleColor, fontWeight: FontWeight.bold),
+                    style: kTextStyle.copyWith(color: kTitleColor, fontWeight: FontWeight.bold),
                   ),
                 )
               ],
@@ -728,8 +690,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Text(
                     'Paket',
                     maxLines: 2,
-                    style: kTextStyle.copyWith(
-                        color: kTitleColor, fontWeight: FontWeight.bold),
+                    style: kTextStyle.copyWith(color: kTitleColor, fontWeight: FontWeight.bold),
                   ),
                 )
               ],
@@ -820,7 +781,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: kGreenColor,
                   ),
-                  onPressed: () => {_deleteAll(), SystemNavigator.pop()},
+                  onPressed: () {
+                    _deleteAll();
+                    const SignIn().launch(context);
+                  },
                   //return true when click on "Yes"
                   child: const Text('Yes'),
                 ),
@@ -856,10 +820,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     var namaa = localStorage.getString('name').toString().replaceAll('"', '');
-    var levelnya =
-        localStorage.getString('level_id').toString().replaceAll('"', '');
-    var nomobile =
-        localStorage.getString('mobile').toString().replaceAll('"', '');
+    var levelnya = localStorage.getString('level_id').toString().replaceAll('"', '');
+    var nomobile = localStorage.getString('mobile').toString().replaceAll('"', '');
     var notiff = localStorage.getString('notif').toString().replaceAll('"', '');
     setState(() {
       level = levelnya;

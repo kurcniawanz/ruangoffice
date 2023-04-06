@@ -64,8 +64,7 @@ class _ProductDetailsState extends State<ProductDetails> {
         title: Text(
           'Detail Product',
           maxLines: 2,
-          style: kTextStyle.copyWith(
-              color: Colors.white, fontWeight: FontWeight.bold),
+          style: kTextStyle.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         // actions: const [
         //   Image(
@@ -84,9 +83,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               width: context.width(),
               padding: const EdgeInsets.all(20.0),
               decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30.0),
-                    topRight: Radius.circular(30.0)),
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0)),
                 color: kBgColor,
               ),
               child: Column(
@@ -107,14 +104,12 @@ class _ProductDetailsState extends State<ProductDetails> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Flexible(
                                     child: Text(
                                       item['name'].toString(),
-                                      style: kTextStyle.copyWith(
-                                          color: kTitleColor),
+                                      style: kTextStyle.copyWith(color: kTitleColor),
                                     ),
                                   )
                                 ],
@@ -176,8 +171,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                   Flexible(
                                     child: Text(
                                       'Rp.${formatAmount(item['lst_price'].toString())}',
-                                      style: kTextStyle.copyWith(
-                                          color: kGreyTextColor),
+                                      style: kTextStyle.copyWith(color: kGreyTextColor),
                                     ),
                                   )
                                 ],
@@ -186,8 +180,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                             Row(children: [
                               Expanded(
                                 child: Container(
-                                    margin: const EdgeInsets.only(
-                                        left: 10.0, right: 10.0),
+                                    margin: const EdgeInsets.only(left: 10.0, right: 10.0),
                                     child: const Divider(
                                       color: kGreyTextColor,
                                       height: 36,
@@ -195,13 +188,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                               ),
                               Text(
                                 'deskripsi',
-                                style: kTextStyle.copyWith(
-                                    color: kGreyTextColor, fontSize: 12),
+                                style: kTextStyle.copyWith(color: kGreyTextColor, fontSize: 12),
                               ),
                               Expanded(
                                 child: Container(
-                                    margin: const EdgeInsets.only(
-                                        left: 10.0, right: 10.0),
+                                    margin: const EdgeInsets.only(left: 10.0, right: 10.0),
                                     child: const Divider(
                                       color: kGreyTextColor,
                                       height: 36,
@@ -211,14 +202,14 @@ class _ProductDetailsState extends State<ProductDetails> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Flexible(
                                     child: Text(
-                                      item['description'].toString(),
-                                      style: kTextStyle.copyWith(
-                                          color: kGreyTextColor),
+                                      item['description'] != ''
+                                          ? item['description'].toString()
+                                          : 'Belum ada deskripsi',
+                                      style: kTextStyle.copyWith(color: kGreyTextColor),
                                     ),
                                   ),
                                 ],
