@@ -86,21 +86,15 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             Text(
               'RuangOffice.com',
-              style: GoogleFonts.manrope(
-                  color: kMainColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30.0),
+              style: GoogleFonts.manrope(color: kMainColor, fontWeight: FontWeight.bold, fontSize: 30.0),
             ),
             const Spacer(),
             Center(
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 10.0),
                 child: Text(
-                  'Version 1.0.9',
-                  style: GoogleFonts.manrope(
-                      color: kMainColor,
-                      fontWeight: FontWeight.normal,
-                      fontSize: 15.0),
+                  'Version 1.0.1',
+                  style: GoogleFonts.manrope(color: kMainColor, fontWeight: FontWeight.normal, fontSize: 15.0),
                 ),
               ),
             ),

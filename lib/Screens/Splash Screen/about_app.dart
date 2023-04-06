@@ -28,8 +28,7 @@ class _AboutScreenState extends State<AboutScreen> {
   Future<void> getToken() async {
     final fcmToken = await FirebaseMessaging.instance.getToken();
     SharedPreferences localStorage = await SharedPreferences.getInstance();
-    var levelnya =
-        localStorage.getString('level').toString().replaceAll('"', '');
+    var levelnya = localStorage.getString('level').toString().replaceAll('"', '');
     if (leveladmin.contains(levelnya)) {
       setState(() {
         tokedata = fcmToken!;
@@ -45,6 +44,12 @@ class _AboutScreenState extends State<AboutScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          backwardsCompatibility: true,
+          iconTheme: const IconThemeData(color: kMainColor),
+        ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -59,21 +64,15 @@ class _AboutScreenState extends State<AboutScreen> {
             ),
             Text(
               'RuangOffice.com',
-              style: GoogleFonts.manrope(
-                  color: kMainColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30.0),
+              style: GoogleFonts.manrope(color: kMainColor, fontWeight: FontWeight.bold, fontSize: 30.0),
             ),
             const Spacer(),
             Center(
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 10.0),
                 child: Text(
-                  'Version 1.0.9',
-                  style: GoogleFonts.manrope(
-                      color: kMainColor,
-                      fontWeight: FontWeight.normal,
-                      fontSize: 15.0),
+                  'Version 1.0.1',
+                  style: GoogleFonts.manrope(color: kMainColor, fontWeight: FontWeight.normal, fontSize: 15.0),
                 ),
               ),
             ),
@@ -83,12 +82,8 @@ class _AboutScreenState extends State<AboutScreen> {
                 child: SelectableText(
                   tokedata,
                   showCursor: true,
-                  toolbarOptions: const ToolbarOptions(
-                      copy: true, selectAll: true, cut: false, paste: false),
-                  style: GoogleFonts.manrope(
-                      color: kAlertColor,
-                      fontWeight: FontWeight.normal,
-                      fontSize: 12.0),
+                  toolbarOptions: const ToolbarOptions(copy: true, selectAll: true, cut: false, paste: false),
+                  style: GoogleFonts.manrope(color: kAlertColor, fontWeight: FontWeight.normal, fontSize: 12.0),
                 ),
               ),
             ),
