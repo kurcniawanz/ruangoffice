@@ -31,8 +31,19 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>The camera will be used to take pictures of packages, or to fill out other documents that require photos as a requirement. Your photos will not be shared with others.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Microphone may one day be needed to record video to meet document requirements.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Photo Library will be used to be a picture of packages, or to fill out other documents that require photos as a requirement. Your photos will not be shared with others.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>Main.storyboard</string>
 	<key>UIMainStoryboardFile</key>

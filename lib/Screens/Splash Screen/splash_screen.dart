@@ -55,35 +55,6 @@ class _SplashScreenState extends State<SplashScreen> {
           // ignore: use_build_context_synchronously
           const HomeScreen().launch(context);
         }
-      } else {
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: Text(
-              'RuangOffice.com',
-              style: kTextStyle.copyWith(color: kTitleColor, fontSize: 14),
-            ),
-            content: const SizedBox(
-              width: 150,
-              height: 40,
-              child: Center(child: Text('Sesi Login Berakhir ?')),
-            ),
-            actions: [
-              SizedBox(
-                width: 60,
-                height: 30,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: kGreenColor,
-                  ),
-                  onPressed: () => _logoutt(),
-                  //return true when click on "Yes"
-                  child: const Text('OK'),
-                ),
-              ),
-            ],
-          ),
-        );
       }
     } else {
       // ignore: use_build_context_synchronously

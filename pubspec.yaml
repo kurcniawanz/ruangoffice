@@ -41,7 +41,6 @@ dependencies:
   google_fonts: ^3.0.1
   intl: ^0.17.0
   nb_utils: ^4.6.23
-  country_code_picker: ^2.0.2
   badges: ^2.0.3
   just_audio: ^0.9.30
   flutter_feather_icons: ^2.0.0+1

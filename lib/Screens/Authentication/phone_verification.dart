@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:nb_utils/nb_utils.dart';
 
 import '../../GlobalComponents/button_global.dart';
@@ -25,8 +25,7 @@ class _PhoneVerificationState extends State<PhoneVerification> {
         iconTheme: const IconThemeData(color: Colors.white),
         title: Text(
           'Enter Otp',
-          style: kTextStyle.copyWith(
-              color: Colors.white, fontWeight: FontWeight.bold),
+          style: kTextStyle.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
       body: Column(
@@ -35,7 +34,7 @@ class _PhoneVerificationState extends State<PhoneVerification> {
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: Text(
-              'Lorem ipsum dolor sit amet, consectetur.',
+              'Please enter OTP to verify your account',
               style: kTextStyle.copyWith(color: Colors.white),
             ),
           ),
@@ -43,9 +42,7 @@ class _PhoneVerificationState extends State<PhoneVerification> {
             child: Container(
               padding: const EdgeInsets.all(20.0),
               decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30.0),
-                    topRight: Radius.circular(30.0)),
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0)),
                 color: Colors.white,
               ),
               child: Column(
@@ -66,10 +63,7 @@ class _PhoneVerificationState extends State<PhoneVerification> {
                     ),
                     child: Text(
                       'OTP Input',
-                      style: kTextStyle.copyWith(
-                          color: kTitleColor,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold),
+                      style: kTextStyle.copyWith(color: kTitleColor, fontSize: 20.0, fontWeight: FontWeight.bold),
                     ),
                   ),
                   const SizedBox(
@@ -81,12 +75,10 @@ class _PhoneVerificationState extends State<PhoneVerification> {
                   ),
                   Container(
                     padding: const EdgeInsets.all(10.0),
-                    decoration: kButtonDecoration.copyWith(
-                        color: kTitleColor.withOpacity(0.1)),
+                    decoration: kButtonDecoration.copyWith(color: kTitleColor.withOpacity(0.1)),
                     child: Text(
                       'Resend Otp',
-                      style: kTextStyle.copyWith(
-                          color: kTitleColor, fontWeight: FontWeight.bold),
+                      style: kTextStyle.copyWith(color: kTitleColor, fontWeight: FontWeight.bold),
                     ),
                   ),
                   const SizedBox(
@@ -116,8 +108,7 @@ class _PhoneVerificationState extends State<PhoneVerification> {
                   ),
                   ButtonGlobal(
                     buttontext: 'Verify',
-                    buttonDecoration:
-                        kButtonDecoration.copyWith(color: kMainColor),
+                    buttonDecoration: kButtonDecoration.copyWith(color: kMainColor),
                     onPressed: () {
                       // const PhoneVerification().launch(context);
                     },

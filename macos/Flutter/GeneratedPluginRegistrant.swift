@@ -11,8 +11,8 @@ import firebase_core
 import firebase_messaging
 import just_audio
 import nb_utils
-import path_provider_macos
-import shared_preferences_macos
+import path_provider_foundation
+import shared_preferences_foundation
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   AudioSessionPlugin.register(with: registry.registrar(forPlugin: "AudioSessionPlugin"))
