@@ -125,6 +125,22 @@ class _KerjaDetailsState extends State<KerjaDetails> {
                               ),
                             ),
                             Padding(
+                              padding: const EdgeInsets.only(right: 20),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Flexible(
+                                    child: Text(
+                                      item['statuskerjaan'].toString(),
+                                      style: kTextStyle.copyWith(
+                                          color: kAlertColor,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
                               padding: const EdgeInsets.only(left: 12),
                               child: Row(
                                 mainAxisAlignment:
@@ -132,7 +148,7 @@ class _KerjaDetailsState extends State<KerjaDetails> {
                                 children: [
                                   Flexible(
                                     child: Text(
-                                      '#${item['name']}',
+                                      '#${item['no_inv']}',
                                       style: kTextStyle.copyWith(
                                           color: kGreyTextColor,
                                           fontSize: 12,
@@ -177,10 +193,9 @@ class _KerjaDetailsState extends State<KerjaDetails> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 12),
+                              padding: const EdgeInsets.only(right: 20),
                               child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   if (item['stat'] == 'LUNAS') ...[
                                     Text(
@@ -202,16 +217,105 @@ class _KerjaDetailsState extends State<KerjaDetails> {
                                 ],
                               ),
                             ),
+                            const SizedBox(
+                              height: 10.0,
+                            ),
+                            const Divider(
+                              color: kBorderColorTextField,
+                              thickness: 1.0,
+                            ),
+                            for (var prod in item['listproduct'])
+                              Padding(
+                                padding: const EdgeInsets.only(left: 12),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Flexible(
+                                      child: Text(
+                                        '- $prod',
+                                        style: kTextStyle.copyWith(
+                                            color: kTitleColor, fontSize: 10),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            const Divider(
+                              color: kBorderColorTextField,
+                              thickness: 1.0,
+                            ),
                             Padding(
                               padding: const EdgeInsets.only(right: 20),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Flexible(
                                     child: Text(
-                                      'Rp.${formatAmount(item['totakhir'].toString())}',
+                                      'Total',
                                       style: kTextStyle.copyWith(
-                                          color: kGreyTextColor,
+                                          color: kTitleColor,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  Flexible(
+                                    child: Text(
+                                      formatAmount(item['totakhir'].toString()),
+                                      style: kTextStyle.copyWith(
+                                          color: kTitleColor,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 20),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Flexible(
+                                    child: Text(
+                                      'Bayar',
+                                      style: kTextStyle.copyWith(
+                                          color: kAlertColor,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  Flexible(
+                                    child: Text(
+                                      formatAmount(
+                                          item['angka_bayar'].toString()),
+                                      style: kTextStyle.copyWith(
+                                          color: kAlertColor,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 20),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Flexible(
+                                    child: Text(
+                                      'Sisa',
+                                      style: kTextStyle.copyWith(
+                                          color: kGreenColor,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  Flexible(
+                                    child: Text(
+                                      formatAmount(
+                                          item['angka_sisa'].toString()),
+                                      style: kTextStyle.copyWith(
+                                          color: kGreenColor,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   )

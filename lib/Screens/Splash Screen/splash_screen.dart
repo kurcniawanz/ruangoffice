@@ -125,7 +125,7 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 10.0),
                 child: Text(
-                  'Version 1.0.9',
+                  'Version 1.0.10',
                   style: GoogleFonts.manrope(
                       color: kMainColor,
                       fontWeight: FontWeight.normal,

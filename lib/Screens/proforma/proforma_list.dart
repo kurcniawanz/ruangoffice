@@ -180,6 +180,13 @@ class _ProformaListState extends State<ProformaList>
                                               fontWeight: FontWeight.bold),
                                         ),
                                         const Spacer(),
+                                        Text(
+                                          "${item['statuskerjaan']}",
+                                          style: kTextStyle.copyWith(
+                                              color: kAlertColor,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.bold),
+                                        ),
                                       ],
                                     ),
                                     Row(

@@ -125,6 +125,22 @@ class _ProformaDetailsState extends State<ProformaDetails> {
                               ),
                             ),
                             Padding(
+                              padding: const EdgeInsets.only(right: 20),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Flexible(
+                                    child: Text(
+                                      item['statuskerjaan'].toString(),
+                                      style: kTextStyle.copyWith(
+                                          color: kAlertColor,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
                               padding: const EdgeInsets.only(left: 12),
                               child: Row(
                                 mainAxisAlignment:
@@ -176,42 +192,53 @@ class _ProformaDetailsState extends State<ProformaDetails> {
                                 ],
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 12),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  if (item['stat'] == 'LUNAS') ...[
-                                    Text(
-                                      item['stat'].toString(),
-                                      style: kTextStyle.copyWith(
-                                          color: kGreenColor,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ] else ...[
-                                    Text(
-                                      item['stat'].toString(),
-                                      style: kTextStyle.copyWith(
-                                          color: kAlertColor,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ]
-                                ],
+                            const SizedBox(
+                              height: 10.0,
+                            ),
+                            const Divider(
+                              color: kBorderColorTextField,
+                              thickness: 1.0,
+                            ),
+                            for (var prod in item['listproduct'])
+                              Padding(
+                                padding: const EdgeInsets.only(left: 12),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Flexible(
+                                      child: Text(
+                                        '- $prod',
+                                        style: kTextStyle.copyWith(
+                                            color: kTitleColor, fontSize: 10),
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
+                            const Divider(
+                              color: kBorderColorTextField,
+                              thickness: 1.0,
                             ),
                             Padding(
                               padding: const EdgeInsets.only(right: 20),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Flexible(
                                     child: Text(
-                                      'Rp.${formatAmount(item['totakhir'].toString())}',
+                                      'Total',
                                       style: kTextStyle.copyWith(
-                                          color: kGreyTextColor,
+                                          color: kTitleColor,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  Flexible(
+                                    child: Text(
+                                      formatAmount(item['totakhir'].toString()),
+                                      style: kTextStyle.copyWith(
+                                          color: kTitleColor,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   )
@@ -233,24 +260,6 @@ class _ProformaDetailsState extends State<ProformaDetails> {
                                       'Marketing : ${item['sales_user'][1]}',
                                       style: kTextStyle.copyWith(
                                           color: kMainColorlama,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 12),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Flexible(
-                                    child: Text(
-                                      'Kerjaan ${item['statuskerjaan']}',
-                                      style: kTextStyle.copyWith(
-                                          color: kTitleColor,
                                           fontSize: 12,
                                           fontWeight: FontWeight.bold),
                                     ),

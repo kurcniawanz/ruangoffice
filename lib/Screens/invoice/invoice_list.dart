@@ -184,7 +184,7 @@ class _KerjaListState extends State<KerjaList> with TickerProviderStateMixin {
                                     Row(
                                       children: [
                                         Text(
-                                          '#${item['name']} / ${item['tglinput']}',
+                                          '#${item['no_inv']} / ${item['tglinput']}',
                                           style: kTextStyle.copyWith(
                                               color: kTitleColor,
                                               fontSize: 11,
